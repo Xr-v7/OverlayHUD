@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.example.overlayhud.app-debug-31:/xml_method.xml.flat",
+        "source": "com.example.overlayhud.app-main-33:/xml/method.xml"
+    },
+    {
+        "merged": "com.example.overlayhud.app-debug-31:/xml_accessibility_service.xml.flat",
+        "source": "com.example.overlayhud.app-main-33:/xml/accessibility_service.xml"
+    },
+    {
+        "merged": "com.example.overlayhud.app-debug-31:/layout_activity_main.xml.flat",
+        "source": "com.example.overlayhud.app-main-33:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.overlayhud.app-debug-31:/layout_activity_config.xml.flat",
+        "source": "com.example.overlayhud.app-main-33:/layout/activity_config.xml"
+    }
+]

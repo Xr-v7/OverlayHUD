@@ -1,0 +1,7 @@
+<resources>
+	<style name="Theme.OverlayHUD.Dark" parent="Theme.AppCompat.DayNight.DarkActionBar">
+		<item name="android:windowBackground">#0D0D0D</item>
+		<item name="android:textColorPrimary">#FFFFFF</item>
+	</style>
+</resources>
+

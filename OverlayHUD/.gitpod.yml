@@ -1,0 +1,5 @@
+image: gitpod/workspace-full
+tasks:
+  - name: Setup Android SDK & Gradle
+    init: bash .gitpod/setup-android.sh
+    command: ./gradlew assembleDebug

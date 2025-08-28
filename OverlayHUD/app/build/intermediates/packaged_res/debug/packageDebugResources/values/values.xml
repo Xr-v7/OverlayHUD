@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Overlay HUD</string>
+    <string name="open_config">Configurar Presets</string>
+    <string name="req_access">Habilitar accesibilidad</string>
+    <string name="req_overlay">Permiso de superposición</string>
+    <string name="start_hud">Iniciar HUD</string>
+    <string name="stop_hud">Detener HUD</string>
+    <style name="Theme.OverlayHUD.Dark" parent="Theme.AppCompat.DayNight.DarkActionBar">
+		<item name="android:windowBackground">#0D0D0D</item>
+		<item name="android:textColorPrimary">#FFFFFF</item>
+	</style>
+</resources>

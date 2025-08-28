@@ -1,0 +1,43 @@
+package com.example.overlayhud;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.MotionEvent;
+import android.view.View;
+import android.content.Intent;
+public class MousePanelView extends View {
+    private final Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Preset.Button data;
+    private final boolean editMode;
+    private float lastX=-1,lastY=-1;
+    public MousePanelView(Context ctx, Preset.Button d, boolean editMode){
+        super(ctx); this.data=d; this.editMode=editMode; setAlpha(d.alpha/255f); setX(d.x); setY(d.y); setLayoutParams(new LayoutParams(d.size,d.size)); p.setColor(0x33444444);
+    }
+    @Override protected void onDraw(Canvas c){ if (editMode) c.drawRect(0,0,getWidth(),getHeight(),p); }
+    @Override public boolean onTouchEvent(MotionEvent e){
+        if (editMode){
+            switch(e.getActionMasked()){
+                case MotionEvent.ACTION_DOWN: return true;
+                case MotionEvent.ACTION_MOVE:
+                    float nx = getX()+e.getX()-getWidth()/2f; float ny=getY()+e.getY()-getHeight()/2f;
+                    setX(nx); setY(ny); data.x=(int)nx; data.y=(int)ny; invalidate(); return true;
+            }
+            return super.onTouchEvent(e);
+        } else {
+            switch(e.getActionMasked()){
+                case MotionEvent.ACTION_DOWN: lastX=e.getRawX(); lastY=e.getRawY(); return true;
+                case MotionEvent.ACTION_MOVE:
+                    float dx=e.getRawX()-lastX, dy=e.getRawY()-lastY; lastX=e.getRawX(); lastY=e.getRawY();
+                    Intent i = new Intent(MouseAccessibilityService.ACTION_MOUSE);
+                    i.putExtra(MouseAccessibilityService.EXTRA_CMD,"MOVE_TAP");
+                    i.putExtra(MouseAccessibilityService.EXTRA_X,(int)e.getRawX());
+                    i.putExtra(MouseAccessibilityService.EXTRA_Y,(int)e.getRawY());
+                    getContext().sendBroadcast(i);
+                    return true;
+                case MotionEvent.ACTION_UP: return true;
+            }
+            return super.onTouchEvent(e);
+        }
+    }
+}
+

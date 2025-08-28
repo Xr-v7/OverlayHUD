@@ -1,0 +1,9 @@
+<resources>
+	<string name="app_name">Overlay HUD</string>
+	<string name="start_hud">Iniciar HUD</string>
+	<string name="stop_hud">Detener HUD</string>
+	<string name="req_overlay">Permiso de superposición</string>
+	<string name="req_access">Habilitar accesibilidad</string>
+	<string name="open_config">Configurar Presets</string>
+</resources>
+

@@ -1,0 +1,23 @@
+R_DEF: Internal format may change without notice
+local
+id btnAccess
+id btnAddButton
+id btnAddPanel
+id btnClear
+id btnConfig
+id btnExit
+id btnOverlayPerm
+id btnSave
+id btnStart
+id editorCanvas
+layout activity_config
+layout activity_main
+string app_name
+string open_config
+string req_access
+string req_overlay
+string start_hud
+string stop_hud
+style Theme.OverlayHUD.Dark
+xml accessibility_service
+xml method

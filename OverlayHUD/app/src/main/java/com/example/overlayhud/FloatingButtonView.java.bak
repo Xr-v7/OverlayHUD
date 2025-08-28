@@ -1,0 +1,40 @@
+package com.example.overlayhud;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.MotionEvent;
+import android.view.View;
+public class FloatingButtonView extends View {
+    private final Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+    public final Preset.Button data;
+    private boolean editMode=false;
+    private boolean active=false;
+    public FloatingButtonView(Context ctx, Preset.Button data, boolean editMode){
+        super(ctx); this.data=data; this.editMode=editMode; setAlpha(data.alpha/255f); setX(data.x); setY(data.y); setLayoutParams(new LayoutParams(data.size,data.size)); p.setColor(0xFF000000);
+    }
+    @Override protected void onDraw(Canvas c){ float r=Math.min(getWidth(),getHeight())/2f; c.drawCircle(r,r,r,p); }
+    @Override public boolean onTouchEvent(MotionEvent e){
+        if (editMode){
+            switch(e.getActionMasked()){
+                case MotionEvent.ACTION_DOWN: return true;
+                case MotionEvent.ACTION_MOVE:
+                    float nx=getX()+e.getX()-getWidth()/2f; float ny=getY()+e.getY()-getHeight()/2f;
+                    setX(nx); setY(ny); data.x=(int)nx; data.y=(int)ny; invalidate(); return true;
+            }
+            return super.onTouchEvent(e);
+        } else {
+            switch(e.getActionMasked()){
+                case MotionEvent.ACTION_DOWN:
+                    if ("toggle".equals(data.mode)){ active = !active; InputUtils.handleKey(data.key,active); }
+                    else { active=true; InputUtils.handleKey(data.key,true); }
+                    return true;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    if (!"toggle".equals(data.mode)){ active=false; InputUtils.handleKey(data.key,false); }
+                    return true;
+            }
+            return super.onTouchEvent(e);
+        }
+    }
+}
+
